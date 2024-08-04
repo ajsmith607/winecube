@@ -1,0 +1,12 @@
+
+<svg width="10" height="10" viewBox="0,0 10,10" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Gray left side -->
+  <polygon points="0,0 7,0 4,10 0,10" fill="darkgray" />
+
+  <!-- White right side -->
+  <polygon points="7,0 10,0 10,10, 4,10 7,0" fill="lightgray" />
+  
+  <!-- Bisection Line -->
+  <line x1="7" y1="0" x2="4" y2="10" stroke="black" stroke-width="0.1" />
+</svg>
