@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -z "$1" ]; then
+   echo "a commit message is needed and missing"
+   exit
+fi
+
 source_base_dir="docsrc"
 target_base_dir="docs"
 
@@ -20,4 +25,7 @@ npm run minify-cssmain
 npm run minify-cssprint
 npm run minify-html
 
+git add -A .
+git commit -m "${1}"
+git push origin main 
 
