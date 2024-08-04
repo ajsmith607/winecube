@@ -7,7 +7,7 @@
     "minify-js":        "terser docsrc/assets/js/main.js --compress --mangle --output docs/assets/js/main.js",
     "minify-cssmain":   "cleancss -o docs/assets/css/main.css docsrc/assets/css/main.css",
     "minify-cssprint":  "cleancss -o docs/assets/css/print.css docsrc/assets/css/print.css",
-    "minify-html":      "html-minifier --input-dir docsrc --output-dir docs --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html,htm"
+    "minify-html":      "html-minifier --input-dir docsrc --output-dir docs --collapse-whitespace --remove-comments --minify-css true --minify-js true --file-ext html"
   },
   "dependencies": {
     "terser": "^5.10.0",
