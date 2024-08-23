@@ -6,12 +6,12 @@ module CreateCube(length, width, height) {
 }
 
 
-// Create a single Bottle Unit block 
-module CreateBottleUnitBlock() {
-    for (x = [0 : BottleBlockUnitSize - 1]) {
+// Create a single Bottle Module 
+module CreateBottleModule() {
+    for (x = [0 : BottleModuleUnitSize - 1]) {
         xpad = (x == 0) ? 0 : x * UsePartitionThickness;
         transx = (x * BottleUnitDiameter) + xpad;
-        for (y = [0 : BottleBlockUnitSize - 1]) {
+        for (y = [0 : BottleModuleUnitSize - 1]) {
             ypad = (y == 0) ? 0 : y * UsePartitionThickness;
             transy = (y * BottleUnitDiameter) + ypad;
             if (BottleOrientation == "vertical") {
@@ -46,13 +46,13 @@ module CreateCrossLapJoint(upperorlower="upper") {
             transy_uh = (upperorlower == "upper" && BottleOrientation == "horizontal") ? -UsePartitionThickness : 0; 
             transy = transy_lv + transy_uh;
             translate([0, transy, 0]) {
-                cube([BottleBlockLength, UsePartitionThickness, BottlePartitionHeight]);
+                cube([BottleModuleLength, UsePartitionThickness, BottlePartitionHeight]);
             }
             
             // Notch cubes
             transz = (upperorlower == "lower") ? BottlePartitionHeight/2 : 0 ;
-            for (j = [1 : BottleBlockUnitSize]) {
-                step = (j * BottleBlockUnitSize) + ((j-1) * UsePartitionThickness);
+            for (j = [1 : BottleModuleUnitSize]) {
+                step = (j * BottleModuleUnitSize) + ((j-1) * UsePartitionThickness);
                 translate([step, transy, transz]) {
                     cube([UsePartitionThickness, UsePartitionThickness, BottlePartitionHeight/2]);
                 }
@@ -64,8 +64,8 @@ module CreateCrossLapJoint(upperorlower="upper") {
 // Create a single cross lap joint block 
 module CreateCrossLapBlock() {
     module assembleseries(upperorlower) {
-        for (j = [1 : BottleBlockUnitSize - 1]) {
-            step = (j * BottleBlockUnitSize) + ((j-1) * UsePartitionThickness);
+        for (j = [1 : BottleModuleUnitSize - 1]) {
+            step = (j * BottleModuleUnitSize) + ((j-1) * UsePartitionThickness);
             x = (upperorlower=="lower") ? step : 0;
             y = (upperorlower=="upper" && BottleOrientation == "vertical") ? step : 0;
             z = (upperorlower=="upper" && BottleOrientation == "horizontal") ? step : 0;
@@ -82,7 +82,7 @@ module CreateCrossLapBlock() {
 module CreateDivider(depth) { cube([WoodThickness, depth, SidePanelHeight]); }
 
 // Create a single shelf
-module CreateShelf() { cube([BottleBlockLength, UseBlockDepth, WoodThickness]); }
+module CreateShelf() { cube([BottleModuleLength, UseModuleDepth, WoodThickness]); }
 
 // Create a single lip 
 module CreateLip() { 
@@ -96,12 +96,12 @@ module CreateVertOutsidePanel() {
     cube([WoodThickness, OverallDepth - (2 * WoodThickness), SidePanelHeight]); 
 }
 
-// Module to create a single Bottle Block 
-module CreateWineBlock(rotate, zpad) {
-    for (x = [0 : BottleBlockUnitSize - 1]) {
+// Create a single Bottle Module 
+module CreateWineModule(rotate, zpad) {
+    for (x = [0 : BottleModuleUnitSize - 1]) {
         xpad = (x == 0) ? 0 : x * UsePartitionThickness;
         transx = (x * BottleUnitDiameter) + xpad;
-        for (y = [0 : BottleBlockUnitSize - 1]) {
+        for (y = [0 : BottleModuleUnitSize - 1]) {
             ypad = (y == 0) ? 0 : y * UsePartitionThickness;
             transy = (y * BottleUnitDiameter) + ypad + BottleUnitDiameter/2;
             if (BottleOrientation == "vertical") {

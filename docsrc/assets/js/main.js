@@ -33,13 +33,17 @@ function ExplodeDesignInfo(info) {
     // H128-36.5x36.5x35-512-un
     
     let props = info.split('-');
+    let model = props[0];   
+    let config = props[2];
 
     const finalProps = {};
-    finalProps.model_number = props[0];
+    finalProps.model_number = model + "-" + config;
 
-    const orient = finalProps.model_number; 
+    const orient = model[0]; 
+    console.log("orient: " + orient);
+
     finalProps.orientation = (orient.toLowerCase() == "v") ? "vertical" : "horizontal";
-    finalProps.capacity = finalProps.model_number.slice(1) + " bottles";
+    finalProps.capacity = model.slice(1) + " bottles";
    
     finalProps._dims = props[1];
     const dimparts = finalProps._dims.split('x');
@@ -47,7 +51,8 @@ function ExplodeDesignInfo(info) {
     finalProps.width = dimparts[1] + " inches";
     finalProps.depth = dimparts[2] + " inches";
 
-    finalProps.estimated_load = props[2] + " pounds";
+    let load = parseInt(finalProps.capacity) * 4;
+    finalProps.estimated_load = load + " pounds";
     finalProps._flags = props[3];
 
     return finalProps;
@@ -81,7 +86,7 @@ function PropTable(info) {
 }
 
 function InsertContent(selector, content) {
-    console.log("SELECTOR: " + selector);
+    //console.log("SELECTOR: " + selector);
     const wrapper = document.querySelector(selector);
     if (wrapper) {
         wrapper.appendChild(content);
@@ -95,11 +100,10 @@ function InsertHighlightedLines(selector, text, startLine, endLine) {
     InsertContent(selector, code);
 }
 
-function InsertFigure(selector, width, modelinfo) {
+function InsertFigure(selector, modelinfo) {
     const img = document.createElement('img');
     img.src = "assets/img/previews/" + modelinfo + ".png"; 
-    img.width = width;
-    console.log("IMAGE:" + img.src);
+    // console.log("IMAGE:" + img.src);
 
     const data = ExplodeDesignInfo(modelinfo);
     const table = PropTable(data);

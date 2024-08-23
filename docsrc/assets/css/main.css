@@ -1,3 +1,4 @@
+/* base styles */
 
 *, *:before, *:after {
     margin: 0;
@@ -122,9 +123,12 @@ cite { font-style: normal; /* reset of default browser style */  }
 .quote-only { margin-bottom: calc( var(--line-height) * 2); }
 
 pre {
-    background-color: var(--background-color2);
-    padding: 0 0 calc( var(--line-height) * 1) calc( var(--line-height) * 1); 
+    background-color: var(--background-color);
+    color: var(--color);
+    padding: calc( var(--line-height) * 1);
+    border-left: 6px solid var(--border-color);
 }
+pre, code { white-space: pre-wrap; }
 
 .hero {
     font-size: 4rem; 
@@ -161,4 +165,52 @@ dt { font-weight: bold; }
 .summary .content p { display: inline; } 
 .more-link { margin-left: calc( var(--line-height) / 2); }
 .hidden { display: none !important; }
+
+
+
+/* site specific styles */
+
+header {    
+    height: 100vh;
+    width: 100%;
+    background-image: url("../img/background.svg");
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+header svg#wine-cube-logo { width: var(--max-width); }
+header svg#wine-cube-logo g#wine { stroke: var(--background-color); }
+header svg#wine-cube-logo g#wine rect { stroke: none; fill: var(--background-color2); }
+header svg#wine-cube-logo g#cube { stroke: var(--background-color2); fill: var(--background-color); }
+header svg#wine-cube-logo g#cube rect { stroke: none; fill: var(--background-color); }
+
+#subheader, footer { 
+    width: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color);
+    color: var(--background-color);
+    text-align: center;
+    line-height: 2;
+    padding: 60px 0 36px 0;
+} 
+
+#subheader h2 { margin: 0px auto 0px auto; padding: 0px; }
+
+article {
+    width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.coderef { font-style: italic; }
+
+@media only screen and (max-width: 1000px) {
+    header svg#wine-cube-logo, article { width: 84%; }
+}
 

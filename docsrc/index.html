@@ -17,16 +17,6 @@
                 script.src = 'http://localhost:35729/livereload.js';
                 document.head.appendChild(script);
             } 
-            const code = `
-Levels = 2;                           // Block Units
-LevelBlockWidth = 2;                  // Block Units
-LevelBlockDepth = 2;                  // Block Units
-
-BottleOrientation = "horizontal";     // vertical or horizontal
-
-// display flags, using string of characters below
-flags = "un";
-            `;
         </script>
         <style>
             :root {
@@ -49,40 +39,6 @@ flags = "un";
                 --visited-link-color: #7a5900;
                 --border-color: #b8860b; 
             }
-            header {    
-                height: 100vh;
-                width: 100%;
-                background-image: url("assets/img/background.svg");
-                background-size: 100% 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                margin-bottom: 0px;
-            }
-            header svg#wine-cube-logo { width: var(--max-width); }
-            header svg#wine-cube-logo g#wine { stroke: var(--background-color); }
-            header svg#wine-cube-logo g#wine rect { stroke: none; fill: var(--background-color2); }
-            header svg#wine-cube-logo g#cube { stroke: var(--background-color2); fill: var(--background-color); }
-            header svg#wine-cube-logo g#cube rect { stroke: none; fill: var(--background-color); }
-            #subheader { 
-                width: 100%; 
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                background-color: var(--color);
-                color: var(--background-color);
-                text-align: center;
-                line-height: 2;
-                padding: 60px 0 36px 0;
-            } 
-            #subheader h2 { margin: 0px auto 0px auto; padding: 0px; }
-            article {
-                width: var(--max-width);
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .coderef { font-style: italic; }
         </style>
 
     </head>
@@ -154,64 +110,238 @@ flags = "un";
         <main>
             <article class="model">
                 <h2>Wine Cube</h2>
-                <p>Wine Cube is an OpenSCAD system for designing simple, modular, high density, passive storage shelving units for standard 750ml wine bottles.</p>
+                <p>Wine Cube is an OpenSCAD-based system for designing simple, modular, high density, passive storage shelving units for standard 750ml wine bottles.</p>
 
                 <p>The fundamental unit of Wine Cube is a model space representing a maximum bounding box that can be occupied by a standard 750ml wine bottle, with the following properties:</p>
 
-                <figure id="model-props"></figure>
+                <figure class="image"><img src="assets/img/bottle-unit.png" /> </figure>
+                <figure id="unit-props"></figure>
                 <script>
-                    const modelProps = {};
-                    modelProps.height = "16 inches";
-                    modelProps.width = "4 inches";
-                    modelProps.depth = "4 inches";
-                    modelProps.estimated_load = "4 pounds";
-                    document.getElementById('model-props').appendChild(PropTable(modelProps));
+                    const unitprops = {};
+                    unitprops.height = "16 inches";
+                    unitprops.width = "4 inches";
+                    unitprops.depth = "4 inches";
+                    unitprops.estimated_load = "4 pounds";
+                    document.getElementById('unit-props').appendChild(PropTable(unitprops));
                 </script>
 
-                <p>This space is intended to universally accomodate different styles of 750ml wine bottles.</p>
 
-                <figure class="image"> [TODO: Add an image of the model here] </figure>
+                <p>This space is intended to universally accomodate different styles of 750ml wine bottles while allowing adequate space to manually access the bottle neck.</p>
 
-                <p>The central organizing principle of Wine Cube is a module that is a 4x4 matrix of bottle units, resulting in a space that is a perfect cube, 16 inches on all sides. The cube module allows for flexible shelf configurations and  straightforwardly accomodates both vertically and horizontally oriented bottles.</p>
+                <p>The central organizing principle of Wine Cube is a module that is a 4x4 matrix of bottle units, resulting in a space that is a perfect cube, 16 inches on all sides. The cube module creates the ideal shelf depth, allows for flexible shelf configurations, and straightforwardly accomodates both vertically and horizontally oriented bottles.</p>
 
-                <figure class="image">[TODO: Add an image of the module here]</figure>
+                <figure class="image"><img src="assets/img/bottle-module.png" /> </figure>
+                <figure id="module-props"></figure>
+                <script>
+                    const moduleprops = {};
+                    moduleprops.height = "16 inches";
+                    moduleprops.width = "16 inches";
+                    moduleprops.depth = "16 inches";
+                    moduleprops.estimated_load = "64 pounds";
+                    document.getElementById('module-props').appendChild(PropTable(moduleprops));
+                </script>
 
                 <p class="coderef">To change the properties of the wine bottle model unit space, see <em>model.scad</em>. The units are assembled into modules in assembly.scad.</p>
             </article>
 
             <article id="prerequisites">
                 <h2>Download and Run</h2>
-                <p>Wine Cube is available from Github. OpenSCAD is required to run Wine Cube.</p>
+                <p>Wine Cube is available from Github, and requires OpenSCAD.
 
                 <ol>
-                    <li><a href="https://www.openscad.org/">Download</a> OpenSCAD.</li>
-                    <li>Clone</a> the Wine Cube Github repository.</li>
-                    <li>Edit the params.scad file according to the documentation in the following section.</li> 
-                    <li>4. Run with: <code>openscad winecube.scad</code></li> 
+                    <li>Download <a href="https://www.openscad.org/">OpenSCAD.</a></li>
+                    <li>Clone the <a href="https://github.com/ajsmith607/winecube">Wine Cube Github repository.</a></li>
+                    <li>Edit the <code>params.scad</code> file according to the documentation in the following section.</li> 
+                    <li>Run with: <code>openscad winecube.scad</code> to preview the results.</li> 
                 </ol>
             </article>
 
-            <article id="basic-usage">
-                <h2>Basic Usage</h2>
+            <article id="basic-config">
+                <h2>Basic Configuration</h2>
+                <p>The basic shelf configuration can be specificed in <code>params.scad</code>, by setting the Levels and LevelModuleWidth parameters in whole module units as shown in the following examples. </p>
+
+
+<h3>Wine Wall Square</h3>
+<pre><code> 
+// units in whole Modules
+Levels = 4;  
+
+LevelModuleWidth = 4; 
+
+</code></pre>
+<div id="wall-square"></div>
+
+<h3>Wine Wall Tower</h3>
+<pre><code> 
+Levels = 4;
+
+LevelModuleWidth = 2;
+
+</code></pre>
+<div id="wall-tower"></div>
+
+<h3>Wine Wall Console</h3>
+<pre><code> 
+Levels = 1;        
+
+LevelModuleWidth = 4;
+
+</code></pre>
+<div id="wall-console"></div>
+
+<p>In addition to wall based shelving, double-sided freestanding shelving can also be created by setting the <code>LevelModuleDepth</code> value to <code>2</code>, as in the following example. Wine Cube allows a maximum module depth of <code>2</code> to preserve ideal shelf depth.</p>
+
+<h3>Wine Cube</h3>
+<pre><code> 
+Levels = 2;        
+LevelModuleWidth = 2;
+
+<strong>LevelModuleDepth = 2;</strong>
+
+</code></pre>
+<div id="wine-cube"></div>
+
+<p>In double-sided configurations, a center panel increases rigidity against shearing forces addressed by the back panel in the wall/single-sided configurations. </p> 
+
+<figure class="image"><img src="assets/img/previews/V128-35x35x35-222-uqa.png" /> </figure>
+
+<p>In the examples so far, the bottles are oriented vertically, and a lip on the front of each shelf secures the bottles. Bottles may also be oriented horizontally, where a lattice structure with cross lapping joints protects bottles from impacting each other and  prevents lower bottles from bearing the weight of upper bottles.</p>
+
+<pre><code> 
+Levels = 2;        
+LevelModuleWidth = 2;
+LevelModuleDepth = 2;
+
+<strong>BottleOrientation = "horizontal";</strong>
+
+</code></pre>
+<div id="horiz-wine-cube"></div>
+
+<figure class="image"><img src="assets/img/previews/H128-36.5x36.5x35-222-uqa.png" /> </figure>
+<figure class="image"><img src="assets/img/previews/H128-36.5x36.5x35-222-uq-straight.png" /> </figure>
+
+            </article>
+
+            <article id="advanced">
+                <h2>Advanced Setttings</h2>
+                
+                <p><dl>
+                    <dt>WoodThickness</dt>
+                    <dd>Thickness of wood boards in inches and/or fractions of inches. <br/><br/> 
+                        <em>Default: 1</em>.</dd>
+
+                    <dt>WoodColor</dt>
+                    <dd>Color of wood boards. See OpenSCAD documentation for docuentation on color specifications. <br/><br/>
+                        <em>Default: <code>[59/255,15/255,27/255, 1]</code></em>.</dd>
+
+                    <dt>LipHeight</dt>
+                    <dd>For vertically oriented shelves, the height of the lip on the front of each shelf, in inches and/or fractions of inches. <br/><br/>
+                        <em>Default: 4</em>.</dd>
+
+                    <dt>BottllePartitionHeight</dt>
+                    <dd>For horizontally oriented shelves, the height of the inter-bottle lattice, in inches and/or fractions of inches. <br/><br/> 
+                        <em>Default: 8</em>.</dd>
+                </dl></p>
+                
+                    <dt>BottlePartitionThickness</dt>
+                    <dd>For horizontally oriented shelves, the thickness of the boards of the inter-bottle lattice, in inches and/or fractions of inches. <br/><br/>
+                        <em>Default: 0.25</em>.</dd>
+
+                    <dt>flags</dt>
+                    <dd>Specific display instructions as a string of characters, as indicated below.  <br/><br/>
+                        <em>Default: uq</em>.</dd>
+
+                    <p>Possible values:</p>
+
+                    <p>
+                    <strong><code>a</code></strong> raise top panel <br />
+                    <strong><code>t</code></strong> hide top panel <br /> 
+                    <strong><code>b</code></strong> hide bottom panel <br /> 
+                    <strong><code>l</code></strong> hide left panel <br /> 
+                    <strong><code>r</code></strong> hide right panel <br /> 
+                    <strong><code>k</code></strong> hide back panel <br /> 
+                    <strong><code>c</code></strong> hide center divider <br /> 
+                    <strong><code>i</code></strong> hide lips  <br /> 
+                    <strong><code>d</code></strong> hide shelf dividers <br /> 
+                    <strong><code>s</code></strong> hide shelves  <br /> 
+                    <strong><code>p</code></strong> hide partitions <br /> 
+                    <strong><code>u</code></strong> hide bottle units <br /> 
+                    <strong><code>w</code></strong> hide wine bottles <br /> 
+                    <strong><code>o</code></strong> output structure information (overall dimensions, bottle capacity, etc., shown in console) <br /> 
+                    <strong><code>q</code></strong> silence debug messages <br /> 
+                    </p>
+                
+            </article>
+
+            <article id="scad-files">
+                <h2>Guide to SCAD Files</h2>
+                <p><dl>
+                    <dt>winecube.scad</dt> 
+                    <dd>The main scad file invoked on the command line to bootstrap the system.</li>
+
+                    <dt>params.scad</dt>
+                    <dd>Defines parameters to configure the structure.</dd>
+
+                    <dt>validation.scad</dt>
+                    <dd>Validates parameters.</dd> 
+
+                    <dt>model.scad</dt>
+                    <dd>Defines the model space.</dd> 
+
+                    <dt>parts.scad</dt>
+                    <dd>Defines all parts.</dd>
+
+                    <dt>assembly.scad</dt>
+                    <dd>Assembles all parts.</dd>
+
+                    <dt>helpers.scad</dt>
+                    <dd>General utility code.</dd>
+
+                    <dt>wine-bottle.scad</dt>
+                    <dd>A wireframe representation of a wine bottle, for illustration purposes.</li>
+
+                </dl></p>
+            </article>
+
+            <!--
+            <article id="more">
+                <h2>More</h2>
                 <p></p>
 
-                <div class="col2">
-                    <figure class="image">[TODO: Add an image of the model here]</figure>
+            </article>
+            -->
+
+            <br />
+            <br />
+            <br />
+            <br />
 
         </main>
 
         <script> 
             document.addEventListener('DOMContentLoaded', () => {
-                var model = "H128-36.5x36.5x35-512-un";
-                var selector = "#basic-usage div.col2";
-                //InsertHighlightedLines(selector, code, 1, 3);
-                //InsertFigure(selector, 400, model);
+                var selector = "#wall-square";
+                var model = "V256-69x69x18-144-uq";
+                InsertFigure(selector, model);
+
+                selector = "#wall-tower";
+                model = "V128-69x35x18-142-uq";
+                InsertFigure(selector, model);
+
+                selector = "#wall-console";
+                model = "V64-18x69x18-114-uq";
+                InsertFigure(selector, model);
+
+                selector = "#wine-cube";
+                model = "V128-35x35x35-222-uq";
+                InsertFigure(selector, model);
+
             });
         </script>
 
         <footer>
-            <p clas="copyright">&copy; <span id="cwyear"></span> <a href=""></a></p>
-            <script> document.getElementById("cwyear").innerHTML = (new Date().getFullYear());</script>
+            <p clas="copyright">&copy; <span id="cwyear"></span> wine cube</p>
+            <script> document.getElementById("cwyear").innerHTML = (new Date().getFullYear());</script> 
         </footer>
     </body>
 </html> 

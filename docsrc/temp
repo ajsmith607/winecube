@@ -1,0 +1,18 @@
+
+<p>
+<strong<code>a</strong</code> raise top panel <br />
+<strong<code>t</strong</code> hide top panel <br /> 
+<strong<code>b</strong</code> hide bottom panel <br /> 
+<strong<code>l</strong</code> hide left panel <br /> 
+<strong<code>r</strong</code> hide right panel <br /> 
+<strong<code>k</strong</code> hide back panel <br /> 
+<strong<code>c</strong</code> hide center divider <br /> 
+<strong<code>i</strong</code> hide lip  <br /> 
+<strong<code>d</strong</code> hide shelf dividers <br /> 
+<strong<code>s</strong</code> hide shelves  <br /> 
+<strong<code>p</strong</code> hide partitions <br /> 
+<strong<code>u</strong</code> hide bottle units <br /> 
+<strong<code>w</strong</code> hide wine bottles <br /> 
+<strong<code>o</strong</code> output structure information (overall dimensions, bottle capacity, etc., shown in console) <br /> 
+<strong<code>q</strong</code> silence debug messages <br /> 
+</p>

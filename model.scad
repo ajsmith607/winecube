@@ -3,7 +3,9 @@
 BottleUnitDiameter= 4;              // inches
 BottleUnitHeight = 16;              // inches
 BottleUnitWeight = 4;               // pounds
-BottleBlockUnitSize = 4;            // a standard Bottle Block is 4x4 Bottle Units
+BottleModuleUnitSize = 4;           // a standard Bottle Module is 4x4 Bottle Units
+
+winecolor = [128/255, 0/255, 32/255, 0.16];
 
 // Create a single Bottle Unit 
 module BottleUnit() {
@@ -11,10 +13,9 @@ module BottleUnit() {
     nudge = (BottleOrientation == "horizontal") ? -BottleUnitDiameter : 0; 
     rotate([rotation,0,0]) {
         translate([0, nudge, 0]) {
-            color([0,0,1, 0.05])
+            color(winecolor) 
             cube([BottleUnitDiameter, BottleUnitDiameter, BottleUnitHeight]);
         }
     }
 }
-
 

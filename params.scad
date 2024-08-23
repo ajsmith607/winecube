@@ -1,11 +1,19 @@
-Levels = 2;                           // Block Units
-LevelBlockWidth = 2;                  // Block Units
-LevelBlockDepth = 2;                  // Block Units
 
-BottleOrientation = "horizontal";     // vertical or horizontal
+
+// BASIC CONFIGURATION
+
+Levels = 2 ;                          // units in Modules 
+LevelModuleWidth = 2;                  // units in Modules 
+LevelModuleDepth = 2;                  // units in Modules 
+BottleOrientation = "horizontal";        // vertical or horizontal
+
+
+
+
+// ADVANCED CONFIGURATION
 
 // display flags, using string of characters below
-flags = "un";
+flags = "uqa";
 
 /*
 flags:
@@ -16,24 +24,25 @@ flags:
     r hide right panel
     k hide back panel
     c hide center divider 
-    i hide lip
+    i hide lips
     d hide shelf dividers
     s hide shelves
     p hide partitions
     u hide bottle units
     w hide wine bottles
     o output structure information (overall dimensions, bottle capacity, etc., shown in console) 
-    n silence debug messages
+    q silence debug messages
 */
 
-WoodThickness = 1;                    // inches
+WoodThickness = 1;                     // units in inches
+WoodColor = [59/255,15/255,27/255, 1];
 
 // for vertical bottle orientation
-LipHeight = 4;                        // inches
+LipHeight = 4;                         // units in inches
 
 // for horizontal bottle orientation
-BottlePartitionHeight = 8;           // inches
-BottlePartitionThickness = 0.25;      // inches
+BottlePartitionHeight = 8;             // units in inches
+BottlePartitionThickness = 0.25;       // units in inches
 
 
 

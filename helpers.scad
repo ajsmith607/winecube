@@ -8,11 +8,10 @@ module report(msg) {
 }
 
 module debug(msg) {
-    if (! includes(flags, "n")) {
+    if (! includes(flags, "q")) {
         echo(msg);
     }
 }
-
 
 // Simulate an associative array using nested lists
 ExampleHash = [

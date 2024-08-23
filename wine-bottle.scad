@@ -6,11 +6,11 @@ NeckHeight = 3;
 TopDiameter = 0.5;
 TopHeight = 1;   
 
-BaseTransparency = 1;
-NeckTransparency = 0.6;
+BaseTransparency = 0.16;
+NeckTransparency = 0.06;
 
-BaseColor = [122/255,0/255,35/255, BaseTransparency];
-NeckColor = [122/255,0/255,35/255, NeckTransparency];
+BaseColor = [128/255,0/255,32/255, BaseTransparency];
+NeckColor = [128/255,0/255,32/255, NeckTransparency];
 
 module CreateWineBottle() {
     // Main body of the bottle
