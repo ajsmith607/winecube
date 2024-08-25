@@ -126,9 +126,9 @@
                 </script>
 
 
-                <p>This space is intended to universally accomodate different styles of 750ml wine bottles while allowing adequate space to manually access the bottle neck.</p>
+                <p>This space is intended to universally accomodate different styles of 750ml wine bottles while allowing adequate space to manually access the bottle neck and remove the bottle from the shelf.</p>
 
-                <p>The central organizing principle of Wine Cube is a module that is a 4x4 matrix of bottle units, resulting in a space that is a perfect cube, 16 inches on all sides. The cube module creates the ideal shelf depth, allows for flexible shelf configurations, and straightforwardly accomodates both vertically and horizontally oriented bottles.</p>
+                <p>The central organizing principle of Wine Cube is a module that is a 4x4 matrix of bottle units, resulting in a negative/open space that is a perfect cube, 16 inches on all sides. The cube module representes the ideal shelf depth, allows for flexible shelf configurations, and straightforwardly accomodates both vertically and horizontally oriented bottles.</p>
 
                 <figure class="image"><img src="assets/img/bottle-module.png" /> </figure>
                 <figure id="module-props"></figure>
@@ -158,7 +158,7 @@
 
             <article id="basic-config">
                 <h2>Basic Configuration</h2>
-                <p>The basic shelf configuration can be specificed in <code>params.scad</code>, by setting the Levels and LevelModuleWidth parameters in whole module units as shown in the following examples. </p>
+                <p>Basic shelf configuration can be specificed in <code>params.scad</code>, by setting the Levels and LevelModuleWidth parameters in whole module units as shown in the following examples. </p>
 
 
 <h3>Wine Wall Square</h3>
@@ -189,9 +189,11 @@ LevelModuleWidth = 4;
 </code></pre>
 <div id="wall-console"></div>
 
-<p>In addition to wall based shelving, double-sided freestanding shelving can also be created by setting the <code>LevelModuleDepth</code> value to <code>2</code>, as in the following example. Wine Cube allows a maximum module depth of <code>2</code> to preserve ideal shelf depth.</p>
 
 <h3>Wine Cube</h3>
+
+<p>In addition to wall based shelving, double-sided freestanding shelving can also be created by setting the <code>LevelModuleDepth</code> value to <code>2</code>, as in the following example. Wine Cube allows a maximum module depth of <code>2</code> to preserve ideal shelf depth.</p>
+
 <pre><code> 
 Levels = 2;        
 LevelModuleWidth = 2;
@@ -204,6 +206,8 @@ LevelModuleWidth = 2;
 <p>In double-sided configurations, a center panel increases rigidity against shearing forces addressed by the back panel in the wall/single-sided configurations. </p> 
 
 <figure class="image"><img src="assets/img/previews/V128-35x35x35-222-uqa.png" /> </figure>
+
+<h3>Bottle Orientation</h3>
 
 <p>In the examples so far, the bottles are oriented vertically, and a lip on the front of each shelf secures the bottles. Bottles may also be oriented horizontally, where a lattice structure with cross lapping joints protects bottles from impacting each other and  prevents lower bottles from bearing the weight of upper bottles.</p>
 
@@ -228,28 +232,28 @@ LevelModuleDepth = 2;
                 <p><dl>
                     <dt>WoodThickness</dt>
                     <dd>Thickness of wood boards in inches and/or fractions of inches. <br/><br/> 
-                        <em>Default: 1</em>.</dd>
+                        <em>Default: 1</em></dd>
 
                     <dt>WoodColor</dt>
                     <dd>Color of wood boards. See OpenSCAD documentation for docuentation on color specifications. <br/><br/>
-                        <em>Default: <code>[59/255,15/255,27/255, 1]</code></em>.</dd>
+                        <em>Default: <code>[59/255,15/255,27/255, 1]</code></em></dd>
 
                     <dt>LipHeight</dt>
                     <dd>For vertically oriented shelves, the height of the lip on the front of each shelf, in inches and/or fractions of inches. <br/><br/>
-                        <em>Default: 4</em>.</dd>
+                        <em>Default: 4</em></dd>
 
                     <dt>BottllePartitionHeight</dt>
-                    <dd>For horizontally oriented shelves, the height of the inter-bottle lattice, in inches and/or fractions of inches. <br/><br/> 
-                        <em>Default: 8</em>.</dd>
+                    <dd>For horizontally oriented shelves, the bottle height of the inter-bottle lattice, in inches and/or fractions of inches. <br/><br/> 
+                        <em>Default: 8</em></dd>
                 </dl></p>
                 
                     <dt>BottlePartitionThickness</dt>
                     <dd>For horizontally oriented shelves, the thickness of the boards of the inter-bottle lattice, in inches and/or fractions of inches. <br/><br/>
-                        <em>Default: 0.25</em>.</dd>
+                        <em>Default: 0.25</em></dd>
 
                     <dt>flags</dt>
                     <dd>Specific display instructions as a string of characters, as indicated below.  <br/><br/>
-                        <em>Default: uq</em>.</dd>
+                        <em>Default: uq</em></dd>
 
                     <p>Possible values:</p>
 
