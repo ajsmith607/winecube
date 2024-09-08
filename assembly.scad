@@ -1,6 +1,6 @@
 
 // Assemble all Bottle Modules 
-module AssembleAllBottleModules() {
+module AssembleAllBottleUnitModules() {
     for (i = [0 : Levels - 1]) {
         transz = ((i+1) * WoodThickness) + (i * UseModuleHeight); 
         for (j = [0 : LevelModuleWidth - 1]) {
@@ -39,7 +39,7 @@ module AssembleAllCrossLapBlocks() {
 
 // Assemble all shelves
 module AssembleAllShelves() {
-    // for each level, for each block, place CreateShelf 
+    // for each level, for each block, place shelf 
     for (i = [1 : Levels - 1]) {
         transz = i * (WoodThickness + UseModuleHeight); 
         for (j = [0 : LevelModuleWidth- 1]) {
@@ -57,7 +57,7 @@ module AssembleAllShelves() {
 
 // Assemble all shelves
 module AssembleAllLips() {
-    // add only to front and back for each level
+    // add to front and back for each level
 
     for (i = [0 : Levels - 1]) {
 
@@ -173,7 +173,7 @@ module AssembleAllWineBottleModules() {
     }
 }
 
-// Assemble complete wine cube 
+// Assemble complete shelving unit 
 module Assemble() {
     AssembleOuterStructure();
     AssembleInnerStructure();
@@ -199,8 +199,7 @@ module Assemble() {
     }
     
     if (! includes(flags, "u")) {
-        debug(str("I SHOULDN'T BE HERE: ", flags));
-        AssembleAllBottleModules();
+        AssembleAllBottleUnitModules();
     }
 }
 
